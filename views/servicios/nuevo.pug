@@ -1,0 +1,52 @@
+extends ../layout
+
+block content
+  - ocultarHeader = true
+  - esDashboard = true
+
+  body.dashboard-layout
+    // Sidebar
+    aside.sidebar
+      .logo-container
+        img(src="/img/DienteLogin1.png", alt="Logo", class="logo-icon")
+        span.logo-text Beauty Smile
+      ul.menu
+        li: a(href="/dashboard") 🏠 Panel
+        li: a(href="/dentistas") 🦷 Dentistas
+        li: a(href="/servicios") 💼 Servicios
+        li: a(href="/pacientes") 👨‍⚕️ Pacientes
+        li: a(href="/citas") 📅 Citas
+        li: a(href="/historial") 📝 Historial
+        li: a(href="/logout" class="btn-reject") 🔒 Cerrar sesión
+
+    main.main-content
+      .form-container-servicio
+        h1 Nuevo Servicio
+        // En views/servicios/nuevo.pug, reemplaza el form por:
+        form(action="/servicios/nuevo", method="POST")
+          .form-servicio-row
+            .form-servicio-col
+              label(for="nombre") Nombre del servicio
+              input(type="text", id="nombre", name="nombre", required)
+              label(for="descripcion") Descripción
+              textarea(id="descripcion", name="descripcion", required)
+              label(for="duracion_estimada") Duración estimada (minutos)
+              input(type="number", id="duracion_estimada", name="duracion_estimada", required)
+            .form-servicio-col
+              label(for="costo") Costo
+              input(type="number", id="costo", name="costo", step="0.01", required)
+              label(for="categoria") Categoría
+              select(id="categoria", name="categoria")
+                option(value="Preventivo") Preventivo
+                option(value="Restaurativo") Restaurativo
+                option(value="Estético") Estético
+                option(value="Ortodóncico") Ortodóncico
+                option(value="Quirúrgico") Quirúrgico
+                option(value="odontologia_general") Odontología General
+                option(value="ortodoncia") Ortodoncia
+                option(value="endodoncia") Endodoncia
+                option(value="periodoncia") Periodoncia
+                option(value="cirugia_odontologica") Cirugía Odontológica
+          .action-buttons-form
+            a.btn.btn-secondary(href="/servicios") Volver a la lista
+            button.btn.btn-primary(type="submit") Registrar Servicio

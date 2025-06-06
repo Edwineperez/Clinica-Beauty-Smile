@@ -1,0 +1,49 @@
+extends ../layout
+
+block content
+  - ocultarHeader = true
+  - esDashboard = true
+
+  body.dashboard-layout
+    aside.sidebar
+      .logo-container
+        img(src="/img/DienteLogin1.png", alt="Logo", class="logo-icon")
+        span.logo-text Beauty Smile
+      ul.menu
+        li: a(href="/dashboard") 🏠 Panel
+        li: a(href="/dentistas") 🦷 Dentistas
+        li: a(href="/servicios") 💼 Servicios
+        li: a(href="/pacientes") 👨‍⚕️ Pacientes
+        li: a(href="/citas") 📅 Citas
+        li: a(href="/historial") 📝 Historial
+        li: a(href="/logout" class="btn-reject") 🔒 Cerrar sesión
+
+    main.main-content
+      .citas-container
+        .citas-header
+          h1 Citas
+          .action-buttons
+            a.btn.btn-primary(href="/citas/nueva") + Nueva Cita
+
+        .table-container
+          table.citas-table
+            thead
+              tr
+                th Paciente
+                th Dentista
+                th Fecha
+                th Hora
+                th Estado
+            tbody
+              if citas.length
+                each cita in citas
+                  tr
+                    td= cita.paciente
+                    td= cita.dentista
+                    td= cita.fecha_formateada
+                    td= cita.hora_formateada
+                    td= cita.estado
+              else
+                tr
+                  td(colspan="5") No hay citas registradas.
+

@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    title= title
+    link(rel="stylesheet", href="/css/style.css")
+    link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css")
+    script(src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js")
+  body
+    if !esDashboard
+      header
+        if usuario
+          nav
+            ul
+              li: a(href="/dashboard") Panel
+              li: a(href="/dentistas") Dentistas
+              li: a(href="/servicios") Servicios
+              li: a(href="/pacientes") Pacientes
+              li: a(href="/citas") Citas
+              li: a(href="/historial") Historial
+              li: a(href="/logout") Cerrar sesión
+      .container
+        block content
+
+

@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+  link(rel="stylesheet", href="/css/login.css")
+
+  .login-container
+    .left
+      img(src="/img/DienteLogin1.png", alt="Welcome Illustration")
+    .right
+      .login-box
+        h2 ¡Bienvenido a Beauty Smile!  
+        if error
+          p.error-message #{error}
+        form(method="POST", action="/login")
+          label(for="nombre_usuario") 
+          input(type="text", name="nombre_usuario", placeholder="Username", required)
+          input(type="password", name="contrasena", placeholder="Password", required)
+          a(href="#")
+          button(type="submit") Login

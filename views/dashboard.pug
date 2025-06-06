@@ -1,0 +1,61 @@
+doctype html
+html
+  head
+    title Panel Administrativo
+    link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css")
+    link(rel="stylesheet", href="/css/style.css")
+    script(src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js")
+  body.dashboard-layout
+
+    // Sidebar
+    aside.sidebar
+      .logo-container
+        img(src="/img/DienteLogin1.png", alt="Logo", class="logo-icon")
+        span.logo-text Beauty Smile
+      ul.menu
+        li: a(href="/dashboard") 🏠 Panel
+        li: a(href="/dentistas") 🦷 Dentistas
+        li: a(href="/servicios") 💼 Servicios
+        li: a(href="/pacientes") 👨‍⚕️ Pacientes
+        li: a(href="/citas") 📅 Citas
+        li: a(href="/historial") 📝 Historial
+        li: a(href="/logout" class="btn-reject") 🔒 Cerrar sesión
+
+    // Contenido principal
+    main.main-content
+      // Encabezado
+      header.dashboard-header
+        h1 Panel Administrativo
+
+      // Tarjetas resumen
+      .summary
+        .card
+          h2 Pacientes
+          p 660
+        .card
+          h2 Citas
+          p 230
+        .card
+          h2 Ingresos
+          p $9,900
+
+      // Contenedor principal
+      .dashboard-container
+        // Citas pendientes
+        .pending-appointments
+          h2 Citas Pendientes
+          if citas && citas.length > 0
+            each cita in citas
+              .appointment-card
+                .appointment-info
+                  h3= cita.nombre_completo
+                  p Fecha: #{cita.fecha_formateada}
+                  p Hora: #{cita.hora_formateada}
+                  p Estado: #{cita.estado}
+                .appointment-actions
+                  button.btn-primary Ver Detalles
+          else
+            p No hay citas pendientes
+
+
+

@@ -1,0 +1,51 @@
+extends ../layout
+
+block content
+  - ocultarHeader = true
+  - esDashboard = true
+
+  body.dashboard-layout
+    // Sidebar
+    aside.sidebar
+      .logo-container
+        img(src="/img/DienteLogin1.png", alt="Logo", class="logo-icon")
+        span.logo-text Beauty Smile
+      ul.menu
+        li: a(href="/dashboard") 🏠 Panel
+        li: a(href="/dentistas") 🦷 Dentistas
+        li: a(href="/servicios") 💼 Servicios
+        li: a(href="/pacientes") 👨‍⚕️ Pacientes
+        li: a(href="/citas") 📅 Citas
+        li: a(href="/historial") 📝 Historial
+        li: a(href="/logout" class="btn-reject") 🔒 Cerrar sesión
+
+    main.main-content
+      .servicios-container
+        .servicios-header
+          h1 Servicios
+          .action-buttons
+            a.btn.btn-primary(href="/servicios/nuevo") + Nuevo Servicio
+
+        .table-container
+          table.servicios-table
+            thead
+              tr
+                th Nombre
+                th Descripción
+                th Duración (min)
+                th Costo
+                th Categoría
+            tbody
+              if servicios.length
+                each servicio in servicios
+                  tr
+                    td= servicio.nombre
+                    td= servicio.descripcion
+                    td= servicio.duracion_estimada
+                    td $#{servicio.costo}
+                    td= servicio.categoria
+              else
+                tr
+                  td(colspan="5") No hay servicios registrados.
+
+
